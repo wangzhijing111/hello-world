@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+
+<table id="userList" lay-filter="userList"></table>
+<script>
+    table.render(tableConfig({
+        elem : '#userList',
+        url : '/cyh/user/getUserList', //数据接口
+        height : 'full-293',
+        cols : [ [ //表头
+            {
+                field : 'id',
+                title : '序号',
+                fixed : 'left',
+                sort : true
+            }, {
+                field : 'username',
+                width : 100,
+                title : '用户'
+            }, {
+                field : 'sex',
+                title : '性别'
+            }, {
+                field : 'phone',
+                title : '电话号码'
+            }, {
+                field : 'creatTime',
+                title : '创建时间'
+            },{
+                title : '操作',
+                toolbar : '#barDemo',
+                fixed : 'right'
+            } ] ],
+        id : 'listReload',
+    }));
+</script>
+</body>
+</html>
