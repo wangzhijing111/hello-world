@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
 
     /**
-     * 根据用户名和密码登陆 
+     * 根据用户名和密码登陆
      * @param username
      * @param password
      * @return
