@@ -21,4 +21,25 @@ public interface UserService {
      */
     public ResponseData getUserList(Users users, int pageNum, int pageSize);
 
+    /**
+     * 删除用户信息
+     * @param users
+     * @return
+     */
+    public ResponseData deleteUser(Users users);
+
+    /**
+     * 编辑用户
+     * @param users
+     * @return
+     */
+    public ResponseData editUser(Users users);
+
+    /**
+     * 新增用户
+     * @param users
+     * @return
+     */
+    public ResponseData addUser(Users users);
+
 }

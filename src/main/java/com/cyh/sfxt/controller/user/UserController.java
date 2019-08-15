@@ -48,6 +48,39 @@ public class UserController {
     public ResponseData getUserlist(Users users, @RequestParam(defaultValue= Const.PAGENUM) int pageNum, @RequestParam(defaultValue=Const.PAGESIZE)int pageSize){
         return  userService.getUserList(users,pageNum,pageSize);
     }
+
+    /**
+     * 逻辑删除用户
+     * @param users
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/deleteUser" ,method = RequestMethod.POST)
+    public ResponseData deleteUser(Users users){
+        return userService.deleteUser(users);
+    }
+
+    /**
+     * 编辑用户
+     * @param users
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/editUser" ,method = RequestMethod.POST)
+    public ResponseData editUser(@RequestBody Users users){
+        return userService.editUser(users);
+    }
+
+    /**
+     * 新增用户
+     * @param users
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addUser" ,method = RequestMethod.POST)
+    public ResponseData addUser(@RequestBody Users users){
+        return userService.addUser(users);
+    }
     /**
      * 打开用户界面
      * @return

@@ -3,27 +3,38 @@ package com.cyh.sfxt.entirty;
 
 import tk.mybatis.mapper.annotation.KeySql;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * 用户信息实体类
+ */
 @Table(name = "users")
 public class Users implements Serializable {
     @Id
     @KeySql(useGeneratedKeys=true)
+    @Column(name = "id")
     private String id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "sex")
     private String sex;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "nick_name")
     private String nickName;
+    @Column(name = "state")
     private String state;
+    @Column(name = "creat_time")
     private String creatTime;
 
     public Users() {
 
     }
-
 
     public String getState() {
         return state;
