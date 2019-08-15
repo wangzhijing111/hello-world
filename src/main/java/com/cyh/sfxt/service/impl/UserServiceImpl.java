@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     @Override
-    public ResponseData getUserList(Users users, int pageNum, int pageSize) { 
+    public ResponseData getUserList(Users users, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         ResponseData responseData=null;
         try{
