@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
     @Autowired
     private UserService userService;
-
     /**
      * 用户登陆
      * @param username
@@ -37,7 +35,6 @@ public class UserController {
                 return "";
             }
     }
-
     /**
      *根据条件查询用户人员列表
      * @param users
@@ -48,7 +45,6 @@ public class UserController {
     public ResponseData getUserlist(Users users, @RequestParam(defaultValue= Const.PAGENUM) int pageNum, @RequestParam(defaultValue=Const.PAGESIZE)int pageSize){
         return  userService.getUserList(users,pageNum,pageSize);
     }
-
     /**
      * 逻辑删除用户
      * @param users
@@ -59,7 +55,6 @@ public class UserController {
     public ResponseData deleteUser(Users users){
         return userService.deleteUser(users);
     }
-
     /**
      * 编辑用户
      * @param users
@@ -70,7 +65,6 @@ public class UserController {
     public ResponseData editUser(@RequestBody Users users){
         return userService.editUser(users);
     }
-
     /**
      * 新增用户
      * @param users
@@ -89,5 +83,4 @@ public class UserController {
     public String openUserPage(){
         return "/yewu/user";
     }
-
 }
