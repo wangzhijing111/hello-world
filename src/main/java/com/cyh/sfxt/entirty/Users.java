@@ -31,9 +31,39 @@ public class Users implements Serializable {
     private String state;
     @Column(name = "creat_time")
     private String creatTime;
+    private String other1;
+    private String other2;
+    private String other3;
+
+
+
 
     public Users() {
 
+    }
+
+    public String getOther1() {
+        return other1;
+    }
+
+    public void setOther1(String other1) {
+        this.other1 = other1;
+    }
+
+    public String getOther2() {
+        return other2;
+    }
+
+    public void setOther2(String other2) {
+        this.other2 = other2;
+    }
+
+    public String getOther3() {
+        return other3;
+    }
+
+    public void setOther3(String other3) {
+        this.other3 = other3;
     }
 
     public String getState() {
@@ -101,22 +131,34 @@ public class Users implements Serializable {
     }
 
 
-    public Users(String id, String username, String password, String sex, String nickName) {
+    public Users(String id, String username, String password, String sex, String phone, String nickName, String state, String creatTime, String other1, String other2, String othher3) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.sex = sex;
+        this.phone = phone;
         this.nickName = nickName;
+        this.state = state;
+        this.creatTime = creatTime;
+        this.other1 = other1;
+        this.other2 = other2;
+        this.other3 = other3;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Users{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", sex='" + sex + '\'' +
+                ", phone='" + phone + '\'' +
                 ", nickName='" + nickName + '\'' +
+                ", state='" + state + '\'' +
+                ", creatTime='" + creatTime + '\'' +
+                ", other1='" + other1 + '\'' +
+                ", other2='" + other2 + '\'' +
+                ", other3='" + other3 + '\'' +
                 '}';
     }
 }

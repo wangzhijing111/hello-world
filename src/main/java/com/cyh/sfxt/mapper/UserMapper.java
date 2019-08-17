@@ -15,7 +15,7 @@ public interface UserMapper extends BaseMaper<Users> {
      * @param password
      * @return
      */
-    @Select("select * from users t where t.username=#{username} and t.password=#{password}")
+    @Select("select * from users t where t.username=#{username} and t.password=#{password} and t.state != '-1'")
     public Users login(@Param("username") String username, @Param("password") String password);
     /**
      * 删除用户

@@ -32,7 +32,7 @@ public class UserController {
         if(null != users){
                 return "/base/index";
             }else {
-                return "";
+                return "redirect:/user/loginUser";
             }
     }
     /**
