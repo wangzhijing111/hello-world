@@ -13,33 +13,28 @@ public interface UserService {
      * @throws Exception
      */
     public Users login(String username, String password) throws Exception;
-
     /**
      * 根据查询信息查询用户的列表
      * @param users
      * @return
      */
     public ResponseData getUserList(Users users, int pageNum, int pageSize);
-
     /**
      * 删除用户信息
      * @param users
      * @return
      */
     public ResponseData deleteUser(Users users);
-
     /**
      * 编辑用户
      * @param users
      * @return
      */
     public ResponseData editUser(Users users);
-
     /**
      * 新增用户
      * @param users
      * @return
      */
     public ResponseData addUser(Users users);
-
 }

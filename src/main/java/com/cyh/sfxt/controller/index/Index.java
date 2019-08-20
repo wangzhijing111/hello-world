@@ -15,12 +15,10 @@ public class Index {
     public String index(){
         return "/base/index";
     }
-
     @RequestMapping("/ceShi")
     public String ceShi(){
         return "/base/ceShi";
     }
-
     /**
      * 登陆界面
      * @return
