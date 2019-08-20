@@ -1,4 +1,4 @@
-package com.cyh.sfxt.controller.index;
+package com.cyh.sfxt.util;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;

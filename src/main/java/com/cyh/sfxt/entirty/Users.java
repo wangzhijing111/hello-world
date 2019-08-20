@@ -31,6 +31,12 @@ public class Users implements Serializable {
     private String state;
     @Column(name = "creat_time")
     private String creatTime;
+    @Column(name = "other1")
+    private String other1;
+    @Column(name = "other2")
+    private String other2;
+    @Column(name = "other3")
+    private String other3;
 
     public Users() {
 
@@ -100,6 +106,29 @@ public class Users implements Serializable {
         this.nickName = nickName;
     }
 
+    public String getOther1() {
+        return other1;
+    }
+
+    public void setOther1(String other1) {
+        this.other1 = other1;
+    }
+
+    public String getOther2() {
+        return other2;
+    }
+
+    public void setOther2(String other2) {
+        this.other2 = other2;
+    }
+
+    public String getOther3() {
+        return other3;
+    }
+
+    public void setOther3(String other3) {
+        this.other3 = other3;
+    }
 
     public Users(String id, String username, String password, String sex, String nickName) {
         this.id = id;

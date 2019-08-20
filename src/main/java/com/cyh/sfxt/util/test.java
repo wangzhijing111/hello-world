@@ -1,5 +1,4 @@
-package com.cyh.sfxt.controller.index;
-
+package com.cyh.sfxt.util;
 
 import java.io.IOException;
 
