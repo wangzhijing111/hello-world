@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService{
             }else {
                 return new ResponseData(ExceptionMsg.NODATA);
             }
-            if(0== num){
+            if(0 != num){
                 responseData=new ResponseData(ExceptionMsg.SUCCESS);
             }else {
                 responseData=new ResponseData(ExceptionMsg.FAILED);
@@ -135,6 +135,33 @@ public class UserServiceImpl implements UserService{
         }catch (Exception e){
             e.printStackTrace();
             return new ResponseData(ExceptionMsg.SYSERROR);
+        }
+        return responseData;
+    }
+
+    @Override
+    public ResponseData saveUserList(Users users) {
+        ResponseData responseData=null;
+        try{
+            int num=0;
+            if(null != users){
+                if(null == users.getPassword() || "".equals(users.getPassword())){
+                    users.setPassword("123456");
+                }
+                users.setState("1");
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                users.setCreatTime(df.format(new Date()));
+                num =userMapper.insert(users);
+            }else {
+                return new ResponseData(ExceptionMsg.NODATA);
+            }
+            if(0 != num){
+                responseData=new ResponseData(ExceptionMsg.SUCCESS);
+            }else {
+                responseData=new ResponseData(ExceptionMsg.FAILED);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return responseData;
     }

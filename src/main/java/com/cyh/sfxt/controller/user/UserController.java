@@ -45,17 +45,49 @@ public class UserController {
         }
     }
 
-
+    /**
+     * 导入用户
+     * @param file
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/daoruUserList" ,method = RequestMethod.POST)
     public String daoruUserList(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
         Object result;
+        ResponseData responseData=null;
         try {
             List<Users> usersList=resolveExcelService.resolveExcel(file);
             System.out.println(usersList.toString());
+            for(Users u:usersList){
+                Users users=new Users();
+                if(null != u){
+                    if(null != u.getUsername() && !"".equals(u.getUsername())){
+                        users.setUsername(u.getUsername());
+                    }
+                    if(null != u.getNickName() && !"".equals(u.getNickName())){
+                        users.setNickName(u.getNickName());
+                    }
+                    if(null != u.getPhone() && !"".equals(u.getPhone())){
+                        users.setPhone(u.getPhone());
+                    }
+                    if(null != u.getPassword() && !"".equals(u.getPassword())){
+                        users.setPassword(u.getPassword());
+                    }
+                    if(null != u.getSex() && !"".equals(u.getSex())){
+                        users.setSex(u.getSex());
+                    }
+                }
+                //保存用户
+                responseData=userService.saveUserList(users);
+            }
+            if(null !=responseData && "0".equals(responseData.getResultCode())){
+                return "/base/index";
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return "/base/index";
     }
     /**
      * 根据条件查询用户人员列表

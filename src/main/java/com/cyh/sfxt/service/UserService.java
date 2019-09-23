@@ -37,4 +37,11 @@ public interface UserService {
      * @return
      */
     public ResponseData addUser(Users users);
+
+    /**
+     * 保存导入用户
+     * @param users
+     * @return
+     */
+    public ResponseData saveUserList(Users users);
 }
