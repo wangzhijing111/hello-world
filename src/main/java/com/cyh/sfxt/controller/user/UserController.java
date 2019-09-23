@@ -89,9 +89,17 @@ public class UserController {
         }
         return "/base/index";
     }
-    @RequestMapping(value = "/daoruPhoto" ,method = RequestMethod.POST)
-    public ResponseData daoruPhoto(@RequestParam("file") MultipartFile file){
 
+    /**
+     * 上传图片
+     * @param file
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/daoruPhoto" ,method = RequestMethod.POST)
+    public ResponseData daoruPhoto(@RequestParam("file") MultipartFile file,HttpServletRequest request, HttpServletResponse response){
+        System.out.println(file.getOriginalFilename());
         return null;
     }
     /**
