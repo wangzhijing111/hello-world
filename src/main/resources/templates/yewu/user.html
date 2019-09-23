@@ -25,7 +25,10 @@
     <div style="float: right;margin-right: 5px">
         <form action="daoruUserList" method="post" enctype="multipart/form-data">
             <input type="file" value="人员信息导入"  style="margin-top: 25px" name="file" >
-            <input type="submit" value="导入"class="layui-btn layui-btn-sm">
+            <input type="submit" value="导入"class="layui-btn layui-btn-sm" id="daoru">
+            <button type="button" class="layui-btn" id="test1">
+                <i class="layui-icon">&#xe67c;</i>上传图片
+            </button>
         </form>
     </div>
 </div>
@@ -60,6 +63,25 @@
     </div>
 </form>
 <script>
+    layui.use('upload', function(){
+        var upload = layui.upload;
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            ,url: '/cyh/user/daoruPhoto' //上传接口,
+            ,accept: 'file'
+            ,auto: false
+            ,bindAction: '#daoru'
+            ,done: function(res){
+                //上传完毕回调
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        });
+    });
+
     table.render(tableConfig({
         elem : '#userList',
         url : '/cyh/user/getUserList', //数据接口

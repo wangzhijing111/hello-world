@@ -89,6 +89,11 @@ public class UserController {
         }
         return "/base/index";
     }
+    @RequestMapping(value = "/daoruPhoto" ,method = RequestMethod.POST)
+    public ResponseData daoruPhoto(@RequestParam("file") MultipartFile file){
+
+        return null;
+    }
     /**
      * 根据条件查询用户人员列表
      *
