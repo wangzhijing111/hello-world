@@ -1,6 +1,7 @@
 package com.cyh.sfxt.entirty;
 
 
+import com.cyh.sfxt.util.UUIdGenId;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @Table(name = "users")
 public class Users implements Serializable {
     @Id
-    @KeySql(useGeneratedKeys=true)
+    @KeySql(genId = UUIdGenId.class)
     @Column(name = "id")
     private String id;
     @Column(name = "username")

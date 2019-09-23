@@ -18,14 +18,14 @@
 
 <div class="layui-form-item">
     <div class="layui-input-inline" style="padding-top: 20px;">
-        <input type="text" name="id" id="username" style="width: 225px;"
+        <input type="text" name="id" id="susername" style="width: 225px;"
                    placeholder="请输入用户姓名或者姓名关键字" autocomplete="off" class="layui-input">
 
     </div>
     <div style="float: right;margin-right: 5px">
         <form action="daoruUserList" method="post" enctype="multipart/form-data">
-            <input type="file" value="人员信息导入"  style="margin-top: 25px" name="file">
-            <input type="submit" value="导入">
+            <input type="file" value="人员信息导入"  style="margin-top: 25px" name="file" >
+            <input type="submit" value="导入"class="layui-btn layui-btn-sm">
         </form>
     </div>
 </div>
@@ -217,7 +217,7 @@
                 break;
             case 'qingkong':
                 $(function() {
-                    $("#username").val('');
+                    $("#susername").val('');
                 });
                 break;
             case 'search':
