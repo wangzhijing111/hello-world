@@ -3,6 +3,7 @@ package com.cyh.sfxt.controller.user;
 import com.cyh.sfxt.entirty.Users;
 import com.cyh.sfxt.entirty.result.ResponseData;
 import com.cyh.sfxt.service.ResolveExcelService;
+import com.cyh.sfxt.service.SavePhotoService;
 import com.cyh.sfxt.service.UserService;
 import com.cyh.sfxt.util.Const;
 import org.apache.ibatis.annotations.Param;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -22,6 +24,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private ResolveExcelService resolveExcelService;
+    @Autowired
+    private SavePhotoService savePhotoService;
     /**
      * 用户登陆
      * @param username
@@ -99,7 +103,11 @@ public class UserController {
      */
     @RequestMapping(value = "/daoruPhoto" ,method = RequestMethod.POST)
     public ResponseData daoruPhoto(@RequestParam("file") MultipartFile file,HttpServletRequest request, HttpServletResponse response){
-        System.out.println(file.getOriginalFilename());
+        try {
+            savePhotoService.insertSelective(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
     /**
