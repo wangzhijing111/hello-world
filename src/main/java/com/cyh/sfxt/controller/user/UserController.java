@@ -1,6 +1,8 @@
 package com.cyh.sfxt.controller.user;
 
+import cn.hutool.json.JSONObject;
 import com.cyh.sfxt.entirty.Users;
+import com.cyh.sfxt.entirty.result.ExceptionMsg;
 import com.cyh.sfxt.entirty.result.ResponseData;
 import com.cyh.sfxt.service.ResolveExcelService;
 import com.cyh.sfxt.service.SavePhotoService;
@@ -14,8 +16,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
@@ -101,10 +106,44 @@ public class UserController {
      * @param response
      * @return
      */
+    @ResponseBody
     @RequestMapping(value = "/daoruPhoto" ,method = RequestMethod.POST)
     public ResponseData daoruPhoto(@RequestParam("file") MultipartFile file,HttpServletRequest request, HttpServletResponse response){
         try {
+            // TODO 保存数据到数据库
             savePhotoService.insertSelective(file);
+            Calendar currTime=Calendar.getInstance();
+            String time=String.valueOf(currTime.get(Calendar.YEAR))+String.valueOf((currTime.get(Calendar.MONTH)+1));
+            String path ="F:"+ File.separator+"img"+File.separator+time;
+            String suffix =file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+            suffix=suffix.toLowerCase();
+            if(suffix.equals(".jpg") || suffix.equals(".jpeg") || suffix.equals(".png") || suffix.equals(".gif")){
+                String fileName= UUID.randomUUID().toString()+suffix;
+                File targeFile= new File(path,fileName);
+                if(!targeFile.getParentFile().exists()){ //注意，判断父级路径是否存在
+                    targeFile.getParentFile().mkdirs();
+                }
+                long size =0;
+                // TODO 保存
+                file.transferTo(targeFile);
+                size = file.getSize();
+                JSONObject result =new JSONObject();
+                result.put("fileUrl", "/img/"+time+fileName);
+                result.put("url", "/img/"+time+fileName);
+                result.put("state", "SUCCESS");
+                result.put("title", fileName);
+                result.put("original", fileName);
+                result.put("type", suffix);
+                result.put("size", size);
+                ResponseData responseData=new ResponseData(ExceptionMsg.SUCCESS,result);
+                return responseData;
+            }else{
+                JSONObject result = new JSONObject();
+                result.put("ss", false);
+                result.put("msg", "格式不支持");
+                ResponseData responseData=new ResponseData(ExceptionMsg.FAILED,result);
+                return responseData;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

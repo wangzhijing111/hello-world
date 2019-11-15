@@ -18,27 +18,27 @@ public class FormatSize {
     public static String[] getFormatSize(long size){
         double kiloByte=size/1024;
         String [] strings=new String[2];
-        if(kiloByte < 1){
+        if(kiloByte > 1 && kiloByte <= 1024){
             strings[0]=String.valueOf(kiloByte);
-            strings[1]="Byte(s)";
-            return strings;
-        }
-        double megaByte = kiloByte/1024;
-        if(megaByte < 1){
-            strings[0]=String.valueOf(megaByte);
             strings[1]="KB";
             return strings;
         }
-        double gigaByte = megaByte/1024;
-        if(gigaByte < 1){
-            strings[0]=String.valueOf(gigaByte);
+        double megaByte = kiloByte/1024;
+        if(megaByte > 1 && megaByte <= 1024){
+            strings[0]=String.valueOf(megaByte);
             strings[1]="MB";
             return strings;
         }
-        double teraBytes = gigaByte/1024;
-        if(teraBytes < 1){
-            strings[0]=String.valueOf(teraBytes);
+        double gigaByte = megaByte/1024;
+        if(gigaByte > 1 && gigaByte <= 1024){
+            strings[0]=String.valueOf(gigaByte);
             strings[1]="GB";
+            return strings;
+        }
+        double teraBytes = gigaByte/1024;
+        if(teraBytes > 1 && teraBytes <=1024){
+            strings[0]=String.valueOf(teraBytes);
+            strings[1]="TB";
             return strings;
         }
         return strings;

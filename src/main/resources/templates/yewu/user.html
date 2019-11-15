@@ -75,9 +75,11 @@
             //,bindAction: '#daoru'//跟auto配合使用,不自动提交后之地一个提交的按钮
             ,done: function(res){
                 //上传完毕回调
-            }
-            ,error: function(){
-                //请求异常回调
+                if(res.resultCode == 0){
+                    layer.msg('上传成功!', {icon: 6});
+                }else{
+                    layer.msg('上传失败!', {icon: 5});
+                }
             }
         });
     });
