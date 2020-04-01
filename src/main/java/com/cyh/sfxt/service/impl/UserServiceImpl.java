@@ -1,4 +1,5 @@
 package com.cyh.sfxt.service.impl;
+import	java.util.Map;
 
 import com.cyh.sfxt.entirty.Users;
 import com.cyh.sfxt.entirty.result.ExceptionMsg;
@@ -8,9 +9,11 @@ import com.cyh.sfxt.service.UserService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.hibernate.validator.internal.util.StringHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -24,6 +27,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
     /**
      * 根据用户名和密码登陆
      * @param username
@@ -165,4 +170,45 @@ public class UserServiceImpl implements UserService{
         }
         return responseData;
     }
+    @Override
+    public  List<Map< String, Object>> finfAll(){
+        StringBuilder sql = new StringBuilder();
+        sql.append("select * from liebiao");
+        return  jdbcTemplate.queryForList(String.valueOf(sql));
+    }
+
+    @Override
+    public  void save(String id,String name,String province,String city,String address ,String zip,String date){
+        StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO `cyh`.`liebiao` (`id`, `name`, `province`, `city`, `address`, `zip`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        jdbcTemplate.update(String.valueOf(sql),id,name,province,city,address,zip,date);
+    }
+
+    @Override
+    public  void update(String name,String province,String city,String address ,String zip,String date,String id){
+        StringBuilder sql = new StringBuilder();
+        sql.append("UPDATE liebiao t set t.`name` = ?,t.province = ?, t.city = ?,t.address = ?,t.zip = ?,t.date = ? where t.id = ?");
+        jdbcTemplate.update(String.valueOf(sql),name,province,city,address,zip,date,id);
+    }
+
+    @Override
+    public  List<Map< String, Object>> loginDbDataSearch(String name,String address){
+        StringBuilder sql = new StringBuilder();
+        sql.append("select * from liebiao t  where 1 = 1 ");
+        if (StringUtils.isNotBlank(name)){
+            sql.append(" and t.name like '%" + name +"%'  ");
+        }
+        if(StringUtils.isNotBlank(address)){
+            sql.append(" and t.address like '%" + address +"%' ");
+        }
+        return  jdbcTemplate.queryForList(String.valueOf(sql));
+    }
+
+    @Override
+    public  void delete(String id){
+        StringBuilder sql = new StringBuilder();
+        sql.append("delete from liebiao  where id = ? ");
+        jdbcTemplate.update(String.valueOf(sql),id);
+    }
+
 }

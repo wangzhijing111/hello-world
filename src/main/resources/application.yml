@@ -1,0 +1,31 @@
+server:
+  servlet:
+    context-path: /cyh
+  port: 8012
+spring:
+  application:
+    name: demo-cyh
+  thymeleaf:
+    cache: false
+  session:
+    store-type: none
+  main:
+    banner-mode: console
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cyh?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    show-sql: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+##  rabbitMQ消息中间件配置
+rabbitmq:
+  host: 127.0.0.1
+  port: 5672
+  username: wangzhijing
+  password: ws121WZG110
+  virtual-host: testHosts

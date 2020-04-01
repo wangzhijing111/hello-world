@@ -2,6 +2,7 @@ package com.cyh.sfxt;
 
 import com.cyh.sfxt.entirty.Users;
 import com.cyh.sfxt.entirty.result.ResponseData;
+import com.cyh.sfxt.rest.HelloSender;
 import com.cyh.sfxt.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,8 @@ public class SfxtApplicationTests {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private HelloSender helloSender;
 
     @Test
     public void contextLoads() {
@@ -30,4 +33,8 @@ public class SfxtApplicationTests {
         System.out.println(responseData.toString());
     }
 
+    @Test
+    public void testRabbitMQ(){
+        helloSender.send();
+    }
 }

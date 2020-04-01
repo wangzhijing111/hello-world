@@ -4,6 +4,9 @@ import com.cyh.sfxt.entirty.Users;
 import com.cyh.sfxt.entirty.result.ResponseData;
 import org.apache.http.protocol.ResponseDate;
 
+import java.util.List;
+import java.util.Map;
+
 public interface UserService {
     /**
      * 根据用户名和密码查询登陆的用户
@@ -44,4 +47,14 @@ public interface UserService {
      * @return
      */
     public ResponseData saveUserList(Users users);
+
+    public List<Map< String, Object>> finfAll();
+
+    public  void save(String id,String name,String province,String city,String address ,String zip,String date);
+
+    public  void update(String name,String province,String city,String address ,String zip,String date,String id);
+
+    public  List<Map< String, Object>> loginDbDataSearch(String name,String address);
+
+    public  void delete(String id);
 }
