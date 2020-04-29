@@ -16,6 +16,22 @@ spring:
     url: jdbc:mysql://localhost:3306/cyh?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     username: root
     password: root
+  redis:
+    host: 127.0.0.1
+    #Redis服务器连接端口
+    port: 6379
+    #Redis服务器连接密码（默认为空）
+    password:
+    #连接池最大连接数（使用负值表示没有限制）
+    lettuce:
+      pool:
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    #连接超时时间（毫秒）
+    timeout: 30000
   jpa:
     show-sql: false
   servlet:
